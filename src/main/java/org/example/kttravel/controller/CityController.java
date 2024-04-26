@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -19,10 +18,17 @@ public class CityController {
         this.cityServices = cityServices;
     }
 
-    @GetMapping("/")
+    @GetMapping({"/", "/home"})
     public String index(Model model){
         List<City> cities = cityServices.getAllCity();
         model.addAttribute("cities", cities);
-        return "index";
+        return "index.html";
+    }
+
+    @GetMapping("/search-tour")
+    public String searchTour(Model model){
+        List<City> cities = cityServices.getAllCity();
+        model.addAttribute("cities", cities);
+        return "search-tour.html";
     }
 }

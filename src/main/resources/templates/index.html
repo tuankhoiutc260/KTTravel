@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!--    <meta name="title" content="KT - Travel" />-->
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>KT - Travel</title>
-    <meta name="description" content="This is KT Travel website" />
+    <meta name="description" content="This is KT Travel website"/>
 
     <!-- FAVICON -->
     <link
@@ -18,18 +17,21 @@
     <link rel="stylesheet" th:href="@{/css/all.min.css}">
 
     <!-- GOOGLE FONT LINK -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
             rel="stylesheet"
     />
 
     <!-- CUSTOM CSS LINK -->
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/header.css}"/>
+    <link rel="stylesheet" th:href="@{/css/preloader.css}"/>
+    <link rel="stylesheet" th:href="@{/css/cont-booking.css}"/>
 
     <!-- PRELOAD IMAGES -->
-    <link rel="preload" as="image" th:href="@{/images/preloader.svg}" />
+    <link rel="preload" as="image" th:href="@{/images/preloader.svg}"/>
 </head>
 <body>
 
@@ -50,11 +52,10 @@
 <header class="header" data-header>
     <div class="container">
         <a href="#" class="logo-active">
-            <img th:src="@{/images/white-logo.svg}" alt="logo" />
+            <img th:src="@{/images/white-logo.svg}" alt="logo"/>
         </a>
 
         <button class="nav-toggle-btn" aria-label="open menu" data-nav-toggler>
-<!--            <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>-->
             <i class="fa-solid fa-bars"></i>
         </button>
 
@@ -65,9 +66,7 @@
                         aria-label="close menu"
                         data-nav-toggler
                 >
-<!--                    <ion-icon name="close-outline" aria-hidden="true"></ion-icon>-->
                     <i class="fa-solid fa-xmark"></i>
-
                 </button>
                 <a href="#" class="logo">
                     <img
@@ -100,11 +99,7 @@
 
                 <ul class="navbar-list" data-nav-toggler>
                     <li class="navbar-item">
-<!--                        <a href="#section-destination" class="navbar-link"-->
-<!--                        >Destination</a-->
                         <a th:href="@{'#section-destination'}" class="navbar-link">Destination</a>
-
-                        >
                     </li>
                     <li class="navbar-item" data-nav-toggler>
                         <a th:href="@{#}" class="navbar-link">Contact</a>
@@ -125,11 +120,11 @@
             <div class="home_slider-wrapper">
                 <div class="home_slide active">
                     <div class="home_slide_image">
-                        <img th:src="@{/images/destination-hanoi.jpg}" alt="" />
+                        <img th:src="@{/images/destination-hanoi.jpg}" alt=""/>
                         <div class="home_slide_text">
                             <div class="heading">
                                 <h1>
-                                    Embark on <br />
+                                    Embark on <br/>
                                     Unforgettable Adventures
                                 </h1>
                             </div>
@@ -144,11 +139,11 @@
                 </div>
                 <div class="home_slide">
                     <div class="home_slide_image">
-                        <img th:src="@{/images/destination-hcmc.jpg}" alt="" />
+                        <img th:src="@{/images/destination-hcmc.jpg}" alt=""/>
                         <div class="home_slide_text">
                             <div class="heading">
                                 <h1>
-                                    Discover <br />
+                                    Discover <br/>
                                     New Horizons
                                 </h1>
                             </div>
@@ -163,11 +158,11 @@
                 </div>
                 <div class="home_slide">
                     <div class="home_slide_image">
-                        <img th:src="@{/images/destination-hcmc1.jpg}" alt="" />
+                        <img th:src="@{/images/destination-hcmc1.jpg}" alt=""/>
                         <div class="home_slide_text">
                             <div class="heading">
                                 <h1>
-                                    Inspiring <br />
+                                    Inspiring <br/>
                                     Travel Stories
                                 </h1>
                             </div>
@@ -181,11 +176,11 @@
                 </div>
                 <div class="home_slide">
                     <div class="home_slide_image">
-                        <img th:src="@{/images/destination-laocai.jpg}" alt="" />
+                        <img th:src="@{/images/destination-laocai.jpg}" alt=""/>
                         <div class="home_slide_text">
                             <div class="heading">
                                 <h1>
-                                    Your <br />
+                                    Your <br/>
                                     Adventure Awaits
                                 </h1>
                             </div>
@@ -206,7 +201,7 @@
                         <div class="home_slide_text">
                             <div class="heading">
                                 <h1>
-                                    Unleash <br />
+                                    Unleash <br/>
                                     Your Inner Explorer
                                 </h1>
                             </div>
@@ -221,11 +216,11 @@
                 </div>
                 <div class="home_slide">
                     <div class="home_slide_image">
-                        <img th:src="@{/images/destination-ninh-binh.jpg}" alt="" />
+                        <img th:src="@{/images/destination-ninh-binh.jpg}" alt=""/>
                         <div class="home_slide_text">
                             <div class="heading">
                                 <h1>
-                                    Travel <br />
+                                    Travel <br/>
                                     Beyond Boundaries
                                 </h1>
                             </div>
@@ -247,7 +242,7 @@
                         <div class="home_slide_text">
                             <div class="heading">
                                 <h1>
-                                    Where <br />
+                                    Where <br/>
                                     Dreams Take Flight
                                 </h1>
                             </div>
@@ -269,7 +264,7 @@
                         <div class="home_slide_text">
                             <div class="heading">
                                 <h1>
-                                    Unlock <br />
+                                    Unlock <br/>
                                     the Beauty of the World
                                 </h1>
                             </div>
@@ -290,7 +285,7 @@
                         <div class="home_slide_text">
                             <div class="heading">
                                 <h1>
-                                    Unlock <br />
+                                    Unlock <br/>
                                     the Beauty of the World
                                 </h1>
                             </div>
@@ -308,22 +303,22 @@
                 <div class="home_thumbnails-wrapper swiper-wrapper">
                     <div class="home_thumbnail swiper-slide">
                         <div class="home_thumbnail_image">
-                            <img th:src="@{/images/destination-hanoi.jpg}" alt="" />
+                            <img th:src="@{/images/destination-hanoi.jpg}" alt=""/>
                         </div>
                     </div>
                     <div class="home_thumbnail swiper-slide">
                         <div class="home_thumbnail_image">
-                            <img th:src="@{/images/destination-hcmc.jpg}" alt="" />
+                            <img th:src="@{/images/destination-hcmc.jpg}" alt=""/>
                         </div>
                     </div>
                     <div class="home_thumbnail swiper-slide">
                         <div class="home_thumbnail_image">
-                            <img th:src="@{/images/destination-hcmc1.jpg}" alt="" />
+                            <img th:src="@{/images/destination-hcmc1.jpg}" alt=""/>
                         </div>
                     </div>
                     <div class="home_thumbnail swiper-slide">
                         <div class="home_thumbnail_image">
-                            <img th:src="@{/images/destination-laocai.jpg}" alt="" />
+                            <img th:src="@{/images/destination-laocai.jpg}" alt=""/>
                         </div>
                     </div>
                     <div class="home_thumbnail swiper-slide">
@@ -336,7 +331,7 @@
                     </div>
                     <div class="home_thumbnail swiper-slide">
                         <div class="home_thumbnail_image">
-                            <img th:src="@{/images/destination-ninh-binh.jpg}" alt="" />
+                            <img th:src="@{/images/destination-ninh-binh.jpg}" alt=""/>
                         </div>
                     </div>
                     <div class="home_thumbnail swiper-slide">
@@ -358,10 +353,10 @@
                 </div>
             </div>
 
-            <div class="home_booking">
-                <div class="home_cont-information-booking">
+            <div class="cont-booking">
+                <div class="cont-information-booking">
                     <!-- DEPARTURE CONTAINER -->
-                    <div class="home_cont-departure">
+                    <div class="cont-departure">
                         <div class="img-departure">
                             <img
                                     th:src="@{/images/ic_location.png}"
@@ -392,7 +387,7 @@
                     </div>
 
                     <!-- DESTINATION CONTAINER -->
-                    <div class="home_cont-destination">
+                    <div class="cont-destination">
                         <div class="img-destination">
                             <img
                                     th:src="@{/images/ic_location.png}"
@@ -422,7 +417,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="home_cont-date">
+                    <div class="cont-date">
                         <div class="icon-calendar">
                             <img
                                     th:src="@{/images/ic_calendar.png}"
@@ -434,13 +429,6 @@
                             <div class="select-date-content">Departure Date</div>
                             <div class="select-date-option">
                                 <label id="soValueDate">Select your departure date!</label>
-<!--                                <input-->
-<!--                                        type="text"-->
-<!--                                        placeholder="Select your departure date!"-->
-<!--                                        id="soValueDate"-->
-<!--                                        readonly-->
-<!--                                        name=""-->
-<!--                                />-->
                             </div>
                         </div>
 
@@ -499,7 +487,9 @@
                     </div>
                 </div>
 
-                <a href="#" class="btn-search-tour">Search Now</a>
+                <a th:href="@{search-tour}" class="btn-search-tour btn-primary"
+                >Search Now</a
+                >
             </div>
         </section>
         <!-- END HOME -->

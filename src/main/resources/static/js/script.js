@@ -69,7 +69,7 @@ thumbnailsSwiper.on("slideChange", () => {
   document.querySelectorAll(".home_slide")[realIndex].classList.add("active");
 });
 
-const homeContDeparture = document.querySelector(".home_cont-departure");
+const contDeparture = document.querySelector(".cont-departure");
 const selectDepartureOption = document.querySelector(
     ".select-departure-option"
 );
@@ -79,7 +79,7 @@ const optionSearchDeparture = document.querySelector("#optionSearchDeparture");
 const departureOptions = document.querySelector(".departure-options");
 const departureOptionsList = document.querySelectorAll(".departure-options li");
 
-const homeContDestination = document.querySelector(".home_cont-destination");
+const contDestination = document.querySelector(".cont-destination");
 const selectDestinationOption = document.querySelector(
     ".select-destination-option"
 );
@@ -94,7 +94,7 @@ const destinationOptionsList = document.querySelectorAll(
 );
 
 selectDepartureOption.addEventListener("click", function () {
-  homeContDeparture.classList.toggle("active");
+  contDeparture.classList.toggle("active");
   const rect = departureContent.getBoundingClientRect();
   const bottomPosition = rect.bottom + window.scrollY;
   const windowHeight = window.innerHeight;
@@ -106,7 +106,7 @@ selectDepartureOption.addEventListener("click", function () {
 });
 
 selectDestinationOption.addEventListener("click", function () {
-  homeContDestination.classList.toggle("active");
+  contDestination.classList.toggle("active");
   const rect = destinationContent.getBoundingClientRect();
   const bottomPosition = rect.bottom + window.scrollY;
   const windowHeight = window.innerHeight;
@@ -123,7 +123,7 @@ function removeActiveContDeparture(event) {
       !departureContent.contains(event.target) &&
       !soValueDeparture.contains(event.target)
   ) {
-    homeContDeparture.classList.remove("active");
+    contDeparture.classList.remove("active");
   }
 }
 
@@ -133,23 +133,23 @@ function removeActiveContDestination(event) {
       !destinationContent.contains(event.target) &&
       !soValueDestination.contains(event.target)
   ) {
-    homeContDestination.classList.remove("active");
+    contDestination.classList.remove("active");
   }
 }
 
 departureOptionsList.forEach(function (departureOptionsListSingle) {
   departureOptionsListSingle.addEventListener("click", function () {
     var text = this.textContent;
-    soValueDeparture.value = text;
-    homeContDeparture.classList.remove("active");
+    soValueDeparture.textContent = text;
+    contDeparture.classList.remove("active");
   });
 });
 
 destinationOptionsList.forEach(function (destinationOptionsListSingle) {
   destinationOptionsListSingle.addEventListener("click", function () {
     var text = this.textContent;
-    soValueDestination.value = text;
-    homeContDestination.classList.remove("active");
+    soValueDestination.textContent = text;
+    contDestination.classList.remove("active");
   });
 });
 
@@ -184,15 +184,22 @@ optionSearchDestination.addEventListener("keyup", function () {
 });
 
 const btnSearchTour = document.querySelector(".btn-search-tour");
-const sectionHome = document.querySelector("#section-home");
+let currentPage = window.location.pathname.split("/").pop(); // Change this to the actual current page
 
+const sectionBooking = document.querySelector(".section-booking");
+console.log(currentPage);
 (function () {
-  const computedStyle = window.getComputedStyle(sectionHome);
-
-  // Get height property as a number (remove the unit)
-  const heightInPixels = parseFloat(computedStyle.getPropertyValue("height"));
-  const btnSearchTourHeight = (heightInPixels / 10) * 0.7;
+  // if (currentPage === "index.html") {
+  const viewportHeight = window.innerHeight;
+  console.log(window.innerHeight);
+  const btnSearchTourHeight = (viewportHeight / 10) * 0.7;
   btnSearchTour.style.height = `${btnSearchTourHeight}px`;
+
+  const sectionBookingHeight = sectionBooking.offsetHeight;
+
+  sectionBooking.style.height = sectionBookingHeight + 20 + "px";
+  console.log("sectionBookingHeight: " + sectionBookingHeight);
+  // }
 })();
 
 // selectDepartureOption.addEventListener("click", function () {
@@ -205,3 +212,88 @@ const sectionHome = document.querySelector("#section-home");
 //       behavior: 'smooth'
 //   });
 // });
+
+window.addEventListener("DOMContentLoaded", function () {
+  const imgCover = document.querySelectorAll(".img-cover");
+  function setHeight() {
+    imgCover.forEach(function (imgCover) {
+      imgCover.style.height = imgCover.width * 0.6 + "px";
+    });
+  }
+
+  setHeight();
+  window.addEventListener("resize", setHeight);
+});
+
+const btnFilter = document.querySelector(".btn-filter");
+const filterTours = document.querySelector(".filter-tours");
+btnFilter.addEventListener("click", function () {
+  filterTours.classList.toggle("active");
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const slider = document.querySelector("#slider");
+  const endValueRange = document.querySelector(".end-value-range");
+  slider.oninput = function () {
+    endValueRange.value = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    var value = ((this.value - this.min) / (this.max - this.min)) * 100;
+    this.style.background =
+        "linear-gradient(to right, var(--color-main) 0%, var(--color-main) " +
+        value +
+        "%, #fff " +
+        value +
+        "%, white 100%)";
+  };
+
+  slider.style.background =
+      "linear-gradient(to right, var(--color-main) 0%, var(--color-main) " +
+      0 +
+      "%, #fff " +
+      0 +
+      "%, white 100%)";
+  var max = parseInt(endValueRange.getAttribute("max"));
+  endValueRange.onkeyup = function () {
+    var removeChar = this.value.replace(/[^0-9\.]/g, "");
+    console.log("remove char: " + removeChar);
+    removeChar = removeChar.replace(/^0+(?=\d)/, "");
+    var removeDot = removeChar.replace(/\./g, "");
+    this.value = removeDot;
+    console.log(formattedNumber);
+    if (this.value > max)
+      this.value = this.value.substring(0, this.value.length - 1);
+    var formattedNumber = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    slider.value = this.value;
+    this.value = formattedNumber;
+  };
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const btnDuration = document.querySelectorAll(".btn-duration");
+  const btnNumOfPeople = document.querySelectorAll(".btn-num-of-people");
+  btnDuration.forEach((button) => {
+    button.addEventListener("click", function () {
+      // Remove active class from all buttons
+      btnDuration.forEach((btn) => {
+        btn.classList.remove("active");
+      });
+
+      this.classList.add("active");
+    });
+  });
+
+  btnNumOfPeople.forEach((button) => {
+    button.addEventListener("click", function () {
+      // Remove active class from all buttons
+      btnNumOfPeople.forEach((btn) => {
+        btn.classList.remove("active");
+      });
+
+      this.classList.add("active");
+    });
+  });
+
+  const btnCloseContFilter = document.querySelector(".btn-close-cont-filter");
+  btnCloseContFilter.addEventListener("click", function () {
+    filterTours.classList.remove("active");
+  });
+});
