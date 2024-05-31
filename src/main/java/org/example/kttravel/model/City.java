@@ -13,9 +13,8 @@ import lombok.NoArgsConstructor;
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "city_id")
     private int id;
-    @Column(name = "city")
-    private String city;
-    @Column(name = "province")
-    private String province;
+    private String name;
+    private String provinceName;
 }

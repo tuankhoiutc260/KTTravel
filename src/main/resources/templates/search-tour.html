@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -232,7 +232,7 @@
                             />
                         </div>
                         <ul class="departure-options">
-                            <li th:each="city : ${cities}" th:text="${city.city}"></li>
+                            <li th:each="city : ${cities}" th:text="${city.cityName}"></li>
                         </ul>
                     </div>
                 </div>
@@ -263,7 +263,7 @@
                             />
                         </div>
                         <ul class="destination-options">
-                            <li th:each="city : ${cities}" th:text="${city.city}"></li>
+                            <li th:each="city : ${cities}" th:text="${city.cityName}"></li>
                         </ul>
                     </div>
                 </div>

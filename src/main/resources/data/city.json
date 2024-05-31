@@ -1,350 +1,350 @@
 [
   {
-    "city": "Hà Nội",
-    "province": "Hà Nội"
+    "name": "Hà Nội",
+    "provinceName": "Hà Nội"
   },
   {
-    "city": "Hải Phòng",
-    "province": "Hải Phòng"
+    "name": "Hải Phòng",
+    "provinceName": "Hải Phòng"
   },
   {
-    "city": "Đà Nẵng",
-    "province": "Đà Nẵng"
+    "name": "Đà Nẵng",
+    "provinceName": "Đà Nẵng"
   },
   {
-    "city": "Hồ Chí Minh",
-    "province": "Hồ Chí Minh"
+    "name": "Hồ Chí Minh",
+    "provinceName": "Hồ Chí Minh"
   },
   {
-    "city": "Cần Thơ",
-    "province": "Cần Thơ"
+    "name": "Cần Thơ",
+    "provinceName": "Cần Thơ"
   },
   {
-    "city": "Bà Rịa",
-    "province": "Bà Rịa - Vũng Tàu"
+    "name": "Bà Rịa",
+    "provinceName": "Bà Rịa - Vũng Tàu"
   },
   {
-    "city": "Bạc Liêu",
-    "province": "Bạc Liêu"
+    "name": "Bạc Liêu",
+    "provinceName": "Bạc Liêu"
   },
   {
-    "city": "Bảo Lộc",
-    "province": "Lâm Đồng"
+    "name": "Bảo Lộc",
+    "provinceName": "Lâm Đồng"
   },
   {
-    "city": "Bắc Giang",
-    "province": "Bắc Giang"
+    "name": "Bắc Giang",
+    "provinceName": "Bắc Giang"
   },
   {
-    "city": "Bắc Kạn",
-    "province": "Bắc Kạn"
+    "name": "Bắc Kạn",
+    "provinceName": "Bắc Kạn"
   },
   {
-    "city": "Bắc Ninh",
-    "province": "Bắc Ninh"
+    "name": "Bắc Ninh",
+    "provinceName": "Bắc Ninh"
   },
   {
-    "city": "Bến Tre",
-    "province": "Bến Tre"
+    "name": "Bến Tre",
+    "provinceName": "Bến Tre"
   },
   {
-    "city": "Biên Hòa",
-    "province": "Đồng Nai"
+    "name": "Biên Hòa",
+    "provinceName": "Đồng Nai"
   },
   {
-    "city": "Buôn Ma Thuột",
-    "province": "Đắk Lắk"
+    "name": "Buôn Ma Thuột",
+    "provinceName": "Đắk Lắk"
   },
   {
-    "city": "Cam Ranh",
-    "province": "Khánh Hòa"
+    "name": "Cam Ranh",
+    "provinceName": "Khánh Hòa"
   },
   {
-    "city": "Cao Bằng",
-    "province": "Cao Bằng"
+    "name": "Cao Bằng",
+    "provinceName": "Cao Bằng"
   },
   {
-    "city": "Cao Lãnh",
-    "province": "Đồng Tháp"
+    "name": "Cao Lãnh",
+    "provinceName": "Đồng Tháp"
   },
   {
-    "city": "Cà Mau",
-    "province": "Cà Mau"
+    "name": "Cà Mau",
+    "provinceName": "Cà Mau"
   },
   {
-    "city": "Cẩm Phả",
-    "province": "Quảng Ninh"
+    "name": "Cẩm Phả",
+    "provinceName": "Quảng Ninh"
   },
   {
-    "city": "Châu Đốc",
-    "province": "An Giang"
+    "name": "Châu Đốc",
+    "provinceName": "An Giang"
   },
   {
-    "city": "Chí Linh",
-    "province": "Hải Dương"
+    "name": "Chí Linh",
+    "provinceName": "Hải Dương"
   },
   {
-    "city": "Dĩ An",
-    "province": "Bình Dương"
+    "name": "Dĩ An",
+    "provinceName": "Bình Dương"
   },
   {
-    "city": "Đà Lạt",
-    "province": "Lâm Đồng"
+    "name": "Đà Lạt",
+    "provinceName": "Lâm Đồng"
   },
   {
-    "city": "Điện Biên Phủ",
-    "province": "Điện Biên"
+    "name": "Điện Biên Phủ",
+    "provinceName": "Điện Biên"
   },
   {
-    "city": "Đông Hà",
-    "province": "Quảng Trị"
+    "name": "Đông Hà",
+    "provinceName": "Quảng Trị"
   },
   {
-    "city": "Đồng Hới",
-    "province": "Quảng Bình"
+    "name": "Đồng Hới",
+    "provinceName": "Quảng Bình"
   },
   {
-    "city": "Đồng Xoài",
-    "province": "Bình Phước"
+    "name": "Đồng Xoài",
+    "provinceName": "Bình Phước"
   },
   {
-    "city": "Gia Nghĩa",
-    "province": "Đắk Nông"
+    "name": "Gia Nghĩa",
+    "provinceName": "Đắk Nông"
   },
   {
-    "city": "Hải Dương",
-    "province": "Hải Dương"
+    "name": "Hải Dương",
+    "provinceName": "Hải Dương"
   },
   {
-    "city": "Hà Giang",
-    "province": "Hà Giang"
+    "name": "Hà Giang",
+    "provinceName": "Hà Giang"
   },
   {
-    "city": "Hà Tiên",
-    "province": "Kiên Giang"
+    "name": "Hà Tiên",
+    "provinceName": "Kiên Giang"
   },
   {
-    "city": "Hà Tĩnh",
-    "province": "Hà Tĩnh"
+    "name": "Hà Tĩnh",
+    "provinceName": "Hà Tĩnh"
   },
   {
-    "city": "Hạ Long",
-    "province": "Quảng Ninh"
+    "name": "Hạ Long",
+    "provinceName": "Quảng Ninh"
   },
   {
-    "city": "Hòa Bình",
-    "province": "Hòa Bình"
+    "name": "Hòa Bình",
+    "provinceName": "Hòa Bình"
   },
   {
-    "city": "Hội An",
-    "province": "Quảng Nam"
+    "name": "Hội An",
+    "provinceName": "Quảng Nam"
   },
   {
-    "city": "Hồng Ngự",
-    "province": "Đồng Tháp"
+    "name": "Hồng Ngự",
+    "provinceName": "Đồng Tháp"
   },
   {
-    "city": "Huế",
-    "province": "Thừa Thiên Huế"
+    "name": "Huế",
+    "provinceName": "Thừa Thiên Huế"
   },
   {
-    "city": "Hưng Yên",
-    "province": "Hưng Yên"
+    "name": "Hưng Yên",
+    "provinceName": "Hưng Yên"
   },
   {
-    "city": "Kon Tum",
-    "province": "Kon Tum"
+    "name": "Kon Tum",
+    "provinceName": "Kon Tum"
   },
   {
-    "city": "Lai Châu",
-    "province": "Lai Châu"
+    "name": "Lai Châu",
+    "provinceName": "Lai Châu"
   },
   {
-    "city": "Lào Cai",
-    "province": "Lào Cai"
+    "name": "Lào Cai",
+    "provinceName": "Lào Cai"
   },
   {
-    "city": "Lạng Sơn",
-    "province": "Lạng Sơn"
+    "name": "Lạng Sơn",
+    "provinceName": "Lạng Sơn"
   },
   {
-    "city": "Long Khánh",
-    "province": "Đồng Nai"
+    "name": "Long Khánh",
+    "provinceName": "Đồng Nai"
   },
   {
-    "city": "Long Xuyên",
-    "province": "An Giang"
+    "name": "Long Xuyên",
+    "provinceName": "An Giang"
   },
   {
-    "city": "Móng Cái",
-    "province": "Quảng Ninh"
+    "name": "Móng Cái",
+    "provinceName": "Quảng Ninh"
   },
   {
-    "city": "Mỹ Tho",
-    "province": "Tiền Giang"
+    "name": "Mỹ Tho",
+    "provinceName": "Tiền Giang"
   },
   {
-    "city": "Nam Định",
-    "province": "Nam Định"
+    "name": "Nam Định",
+    "provinceName": "Nam Định"
   },
   {
-    "city": "Ngã Bảy",
-    "province": "Hậu Giang"
+    "name": "Ngã Bảy",
+    "provinceName": "Hậu Giang"
   },
   {
-    "city": "Nha Trang",
-    "province": "Khánh Hòa"
+    "name": "Nha Trang",
+    "provinceName": "Khánh Hòa"
   },
   {
-    "city": "Ninh Bình",
-    "province": "Ninh Bình"
+    "name": "Ninh Bình",
+    "provinceName": "Ninh Bình"
   },
   {
-    "city": "Phan Rang – Tháp Chàm",
-    "province": "Ninh Thuận"
+    "name": "Phan Rang – Tháp Chàm",
+    "provinceName": "Ninh Thuận"
   },
   {
-    "city": "Phan Thiết",
-    "province": "Bình Thuận"
+    "name": "Phan Thiết",
+    "provinceName": "Bình Thuận"
   },
   {
-    "city": "Phổ Yên",
-    "province": "Thái Nguyên"
+    "name": "Phổ Yên",
+    "provinceName": "Thái Nguyên"
   },
   {
-    "city": "Phú Quốc",
-    "province": "Kiên Giang"
+    "name": "Phú Quốc",
+    "provinceName": "Kiên Giang"
   },
   {
-    "city": "Phúc Yên",
-    "province": "Vĩnh Phúc"
+    "name": "Phúc Yên",
+    "provinceName": "Vĩnh Phúc"
   },
   {
-    "city": "Phủ Lý",
-    "province": "Hà Nam"
+    "name": "Phủ Lý",
+    "provinceName": "Hà Nam"
   },
   {
-    "city": "Pleiku",
-    "province": "Gia Lai"
+    "name": "Pleiku",
+    "provinceName": "Gia Lai"
   },
   {
-    "city": "Quảng Ngãi",
-    "province": "Quảng Ngãi"
+    "name": "Quảng Ngãi",
+    "provinceName": "Quảng Ngãi"
   },
   {
-    "city": "Quy Nhơn",
-    "province": "Bình Định"
+    "name": "Quy Nhơn",
+    "provinceName": "Bình Định"
   },
   {
-    "city": "Rạch Giá",
-    "province": "Kiên Giang"
+    "name": "Rạch Giá",
+    "provinceName": "Kiên Giang"
   },
   {
-    "city": "Sa Đéc",
-    "province": "Đồng Tháp"
+    "name": "Sa Đéc",
+    "provinceName": "Đồng Tháp"
   },
   {
-    "city": "Sầm Sơn",
-    "province": "Thanh Hóa"
+    "name": "Sầm Sơn",
+    "provinceName": "Thanh Hóa"
   },
   {
-    "city": "Sóc Trăng",
-    "province": "Sóc Trăng"
+    "name": "Sóc Trăng",
+    "provinceName": "Sóc Trăng"
   },
   {
-    "city": "Sông Công",
-    "province": "Thái Nguyên"
+    "name": "Sông Công",
+    "provinceName": "Thái Nguyên"
   },
   {
-    "city": "Sơn La",
-    "province": "Sơn La"
+    "name": "Sơn La",
+    "provinceName": "Sơn La"
   },
   {
-    "city": "Tam Điệp",
-    "province": "Ninh Bình"
+    "name": "Tam Điệp",
+    "provinceName": "Ninh Bình"
   },
   {
-    "city": "Tam Kỳ",
-    "province": "Quảng Nam"
+    "name": "Tam Kỳ",
+    "provinceName": "Quảng Nam"
   },
   {
-    "city": "Tân An",
-    "province": "Long An"
+    "name": "Tân An",
+    "provinceName": "Long An"
   },
   {
-    "city": "Tân Uyên",
-    "province": "Bình Dương"
+    "name": "Tân Uyên",
+    "provinceName": "Bình Dương"
   },
   {
-    "city": "Tây Ninh",
-    "province": "Tây Ninh"
+    "name": "Tây Ninh",
+    "provinceName": "Tây Ninh"
   },
   {
-    "city": "Thanh Hóa",
-    "province": "Thanh Hóa"
+    "name": "Thanh Hóa",
+    "provinceName": "Thanh Hóa"
   },
   {
-    "city": "Thái Bình",
-    "province": "Thái Bình"
+    "name": "Thái Bình",
+    "provinceName": "Thái Bình"
   },
   {
-    "city": "Thái Nguyên",
-    "province": "Thái Nguyên"
+    "name": "Thái Nguyên",
+    "provinceName": "Thái Nguyên"
   },
   {
-    "city": "Thủ Dầu Một",
-    "province": "Bình Dương"
+    "name": "Thủ Dầu Một",
+    "provinceName": "Bình Dương"
   },
   {
-    "city": "Thuận An",
-    "province": "Bình Dương"
+    "name": "Thuận An",
+    "provinceName": "Bình Dương"
   },
   {
-    "city": "Trà Vinh",
-    "province": "Trà Vinh"
+    "name": "Trà Vinh",
+    "provinceName": "Trà Vinh"
   },
   {
-    "city": "Tuyên Quang",
-    "province": "Tuyên Quang"
+    "name": "Tuyên Quang",
+    "provinceName": "Tuyên Quang"
   },
   {
-    "city": "Tuy Hòa",
-    "province": "Phú Yên"
+    "name": "Tuy Hòa",
+    "provinceName": "Phú Yên"
   },
   {
-    "city": "Từ Sơn",
-    "province": "Bắc Ninh"
+    "name": "Từ Sơn",
+    "provinceName": "Bắc Ninh"
   },
   {
-    "city": "Uông Bí",
-    "province": "Quảng Ninh"
+    "name": "Uông Bí",
+    "provinceName": "Quảng Ninh"
   },
   {
-    "city": "Việt Trì",
-    "province": "Phú Thọ"
+    "name": "Việt Trì",
+    "provinceName": "Phú Thọ"
   },
   {
-    "city": "Vinh",
-    "province": "Nghệ An"
+    "name": "Vinh",
+    "provinceName": "Nghệ An"
   },
   {
-    "city": "Vị Thanh",
-    "province": "Hậu Giang"
+    "name": "Vị Thanh",
+    "provinceName": "Hậu Giang"
   },
   {
-    "city": "Vĩnh Long",
-    "province": "Vĩnh Long"
+    "name": "Vĩnh Long",
+    "provinceName": "Vĩnh Long"
   },
   {
-    "city": "Vĩnh Yên",
-    "province": "Vĩnh Phúc"
+    "name": "Vĩnh Yên",
+    "provinceName": "Vĩnh Phúc"
   },
   {
-    "city": "Vũng Tàu",
-    "province": "Bà Rịa - Vũng Tàu"
+    "name": "Vũng Tàu",
+    "provinceName": "Bà Rịa - Vũng Tàu"
   },
   {
-    "city": "Yên Bái",
-    "province": "Yên Bái"
+    "name": "Yên Bái",
+    "provinceName": "Yên Bái"
   }
 ]

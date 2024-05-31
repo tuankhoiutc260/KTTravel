@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+</head>
+
+<body>
+<div class="container">
+    <div id="toast-box"><div class="toast" style="display: none"></div></div>
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="#">
+              <span class="material-symbols-outlined icon-btn">
+                dashboard
+              </span>
+                    <span class="title">Logo</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="#">
+                    <span class="tool-tip">Dashboard</span>
+                    <span class="material-symbols-outlined icon-btn">
+                dashboard
+              </span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="tool-tip">Tour</span>
+                    <span class="material-symbols-outlined icon-btn"> travel </span>
+                    <span class="title">Tour</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="tool-tip">Booking</span>
+
+                    <span class="material-symbols-outlined icon-btn">
+                confirmation_number
+              </span>
+                    <span class="title">Booking</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="tool-tip">Customer</span>
+
+                    <span class="material-symbols-outlined icon-btn">
+                perm_contact_calendar
+              </span>
+                    <span class="title">Customer</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="tool-tip">Setting</span>
+
+                    <span class="material-symbols-outlined icon-btn"> settings </span>
+                    <span class="title">Setting</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="tool-tip">Password</span>
+                    <span class="material-symbols-outlined icon-btn">
+                manage_accounts
+              </span>
+                    <span class="title">Password</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="tool-tip">Sign Out</span>
+
+                    <span class="material-symbols-outlined icon-btn"> logout </span>
+                    <span class="title">Sign Out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <header class="top-bar">
+            <span class="material-symbols-outlined icon-btn toggle"> menu </span>
+<!--            <label for=""><input type="text" placeholder="Search" /> </label>-->
+            <img th:src="@{/images/destination-2.jpg}" alt="" />
+        </header>
+
+        <div class="cont-tour-dashboard-inf">
+            <div class="sub-cont-tour-dashboard-inf">
+                <div class="cont-tour-dashboard-filter">
+                    <div class="entries">
+                        Show
+                        <select name="" id="table_size">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        entries
+                    </div>
+                    <button id="show-toast">Show toast</button>
+                    <div class="filter">
+                        <span class="material-symbols-outlined"> search </span>
+                        <input type="search" name="" id="search" placeholder="Enter Tour name to find" />
+                    </div>
+                    <div class="add-new-tour btn btn-tertiary">
+                        <span class="material-symbols-outlined"> add </span>
+                        <a href="#" id="btn-add-new-tour">New Tour</a>
+                    </div>
+                </div>
+                <div class="cont-table">
+                    <table>
+                        <thead>
+                        <tr class="heading">
+                            <th><input type="checkbox" /></th>
+                            <th>Tour Name</th>
+                            <th style="text-align: center">Total Earnings($)</th>
+                            <th style="text-align: center">Total Booking</th>
+                            <th style="text-align: center">Duration</th>
+                            <th style="text-align: center">Price/head($)</th>
+                            <th style="text-align: center">Timeline</th>
+                            <th style="text-align: center">Action</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="tour :${tourList}">
+                            <td><input type="checkbox" /></td>
+                            <td>
+                                <div class="cell-tour-name">
+                                    <div class="tour-img-inf">
+                                        <img th:src="@{/images/destination-1.jpg}" alt="" />
+                                    </div>
+                                    <div class="tour-name-inf">
+                                        <span class="tour-name" th:text="${tour.name}"></span>
+                                        <span class="tour-id" th:text="'#' + ${tour.id}"></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="total-earnings-value">
+                                <div class="cell-total-earnings">
+                                    <span class="main-total-earnings-value">150K</span>
+                                    <span class="rate-value">5.5k</span>
+                                </div>
+                            </td>
+                            <td class="total-booking-value">250</td>
+                            <td class="duration-value">10 Days</td>
+                            <td class="price-value" th:text="'$' + ${tour.mainPrice}"></td>
+                            <td class="timeline-value">
+                                <div class="cell-timeline">
+                                    <span th:text="${#dates.format(tour.departureDate, 'MMMM d, yyyy')}"></span>
+                                    <span th:text="' - '"></span>
+                                    <span th:text="${#dates.format(tour.destinationDate, 'MMMM d, yyyy')}"></span>
+                                </div>
+                            </td>
+                            <td class="action-value">
+                                <div class="cell-action">
+                                    <span class="material-symbols-outlined"> edit </span>
+                                    <span class="material-symbols-outlined"> delete </span>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cont-pagination">
+                    <span class="show-entries">Showing 1 to 10 of 50 entries</span>
+                    <div class="btn-pagination">
+                        <a href="#" class="btn btn-tertiary">&lt;</a>
+                        <a href="#" class="btn btn-tertiary btn-number active">1</a>
+                        <a href="#" class="btn btn-tertiary btn-number">2</a>
+                        <a href="#" class="btn btn-tertiary btn-number">3</a>
+                        <a href="#" class="btn btn-tertiary btn-number">4</a>
+                        <a href="#" class="btn btn-tertiary btn-number">5</a>
+                        <a href="#" class="btn btn-tertiary">&gt;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cont-add-new-tour active">
+            <div class="sub-cont-add-new-tour">
+                <div class="main-cont-progress">
+                    <div class="cont-progress">
+                        <div class="cont-main-sub-progress-1 cont-main-sub-progress active">
+                            <div class="cont-progress-1 sub-cont-progress active">
+                                <div class="cont-numb"><span></span></div>
+                            </div>
+                        </div>
+
+                        <div class="cont-main-sub-progress-2 cont-main-sub-progress ">
+                            <div class="cont-progress-1 sub-cont-progress">
+                                <div class="cont-numb"><span>2</span></div>
+                            </div>
+                        </div>
+
+                        <div class="cont-main-sub-progress-3 cont-main-sub-progress ">
+                            <div class="cont-progress-1 sub-cont-progress">
+                                <div class="cont-numb finish"><span>3</span></div>
+                            </div>
+                        </div>
+
+                        <div class="cont-main-sub-progress-4 cont-main-sub-progress">
+                            <div class="cont-progress-1 sub-cont-progress">
+                                <div class="cont-numb finish"><span>4</span></div>
+                            </div>
+                        </div>
+
+                        <div class="cont-main-sub-progress-5 cont-main-sub-progress">
+                            <div class="cont-progress-1 sub-cont-progress">
+                                <div class="cont-numb finish"><span>5</span></div>
+                            </div>
+                        </div>
+
+                        <div class="cont-progress-bar">
+                  <span id="icon-progress-bar" class="material-symbols-outlined">
+                    flight_takeoff
+                  </span>
+                            <div class="sub-cont-success-progress-bar"></div>
+                            <div class="sub-cont-not-success-progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-cont-inf-new-tour">
+                    <div class="sub-2-cont-inf-new-tour">
+                        <form id="form-add-new-tour" method="post" th:object="${tourDTO}">
+                            <div class="sub-cont-inf-new-tour cont-process-1 active ">
+                                <div id="cont-tour-name" class="cont-inf-field ">
+                                    <label for="input-tour-name" class="title-field">Tour Name <span>(required)</span></label>
+                                    <input type="text" id="input-tour-name" name="name" class="input-field reset-field text-field" placeholder="e.g: Khám phá Đà Lạt" maxlength="100" oninput="countChar100(this, document.querySelector('#tour-name-char-count'))">
+                                    <span id="tour-name-char-count" class="char-count char-count-100 reset-field">0/100</span>
+                                </div>
+                                <div id="cont-tour-description" class="cont-inf-field ">
+                                    <label for="input-tour-description" class="title-field">Tour Description <span>(required)</span></label>
+                                    <textarea id="input-tour-description" name="description" class="input-field reset-field text-field" placeholder="e.g: Hòa mình vào vẻ đẹp huyền bí của Đà Lạt - thành phố sương mù và hoa..." maxlength="250" oninput="countChar250(this, document.querySelector('#tour-description-char-count'))"></textarea>
+                                    <span id="tour-description-char-count" class="char-count char-count-100 reset-field">0/100</span>
+                                </div>
+                            </div>
+
+                            <div class="sub-cont-inf-new-tour cont-process-2">
+                                <div id="cont-date">
+                                    <div class="cont-departure-date-add-new-tour cont-inf-field ">
+                                        <label class="title-field" for="input-departure-date">Departure Date <span>(required)</span></label>
+                                        <input id="input-departure-date" name="departureDate" class="input-field input-select-field reset-field text-field" placeholder="Select departure date!" readonly>
+                                        <div id="cont-departure-calendar" class="cont-calendar">
+                                            <div class="sub-cont-calendar">
+                                                <div class="calendar-header">
+                                                    <div class="calendar-month">
+                                                        <span class="month-change" id="pre-departure-month">&lt;</span>
+                                                        <span class="month-picker" id="month-departure-picker">May</span>
+                                                        <span class="month-change" id="next-departure-month">&gt;</span>
+                                                    </div>
+                                                    <div class="calendar-year">
+                                                        <span class="year-change" id="pre-departure-year">&lt;</span>
+                                                        <span id="departure-year" class="year">2020</span>
+                                                        <span class="year-change" id="next-departure-year">&gt;</span>
+                                                    </div>
+                                                </div>
+                                                <div class="calendar-body">
+                                                    <div class="calendar-week-days">
+                                                        <div>Sun</div>
+                                                        <div>Mon</div>
+                                                        <div>Tue</div>
+                                                        <div>Wed</div>
+                                                        <div>Thu</div>
+                                                        <div>Fri</div>
+                                                        <div>Sat</div>
+                                                    </div>
+                                                    <div class="departure-calendar-days"></div>
+                                                </div>
+                                                <div class="calendar-description">
+                                                    <div class="description-1">
+                                                        <div class="description-1-color"></div>
+                                                        <div class="description-1-content">
+                                                            Current date
+                                                        </div>
+                                                    </div>
+                                                    <div class="description-2">
+                                                        <div class="description-2-color"></div>
+                                                        <div class="description-2-content">
+                                                            Selected date
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cont-departure-calendar-month hide">
+                                                <div id="departure-month-list" class="month-list"></div>
+                                                <div class="calendar-description">
+                                                    <div class="description-1">
+                                                        <div class="description-1-color"></div>
+                                                        <div class="description-1-content">
+                                                            Current month
+                                                        </div>
+                                                    </div>
+                                                    <div class="description-2">
+                                                        <div class="description-2-color"></div>
+                                                        <div class="description-2-content">
+                                                            Selected month
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="cont-destination-date-add-new-tour cont-inf-field ">
+                                        <label class="title-field" for="input-destination-date">Destination Date <span>(required)</span></label>
+                                        <input id="input-destination-date" name="destinationDate" class="input-field input-select-field reset-field text-field" placeholder="Select destination date!" readonly>
+                                        <div id="cont-destination-calendar" class="cont-calendar">
+                                            <div class="sub-cont-calendar">
+                                                <div class="calendar-header">
+                                                    <div class="calendar-month">
+                                                        <span class="month-change" id="pre-destination-month">&lt;</span>
+                                                        <span class="month-picker" id="month-destination-picker">May</span>
+                                                        <span class="month-change" id="next-destination-month">&gt;</span>
+                                                    </div>
+                                                    <div class="calendar-year">
+                                                        <span class="year-change" id="pre-destination-year">&lt;</span>
+                                                        <span id="destination-year" class="year">2020</span>
+                                                        <span class="year-change" id="next-destination-year">&gt;</span>
+                                                    </div>
+                                                </div>
+                                                <div class="calendar-body">
+                                                    <div class="calendar-week-days">
+                                                        <div>Sun</div>
+                                                        <div>Mon</div>
+                                                        <div>Tue</div>
+                                                        <div>Wed</div>
+                                                        <div>Thu</div>
+                                                        <div>Fri</div>
+                                                        <div>Sat</div>
+                                                    </div>
+                                                    <div class="destination-calendar-days"></div>
+                                                </div>
+                                                <div class="calendar-description">
+                                                    <div class="description-1">
+                                                        <div class="description-1-color"></div>
+                                                        <div class="description-1-content">
+                                                            Current date
+                                                        </div>
+                                                    </div>
+                                                    <div class="description-2">
+                                                        <div class="description-2-color"></div>
+                                                        <div class="description-2-content">
+                                                            Selected date
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cont-destination-calendar-month hide">
+                                                <div id="destination-month-list" class="month-list"></div>
+                                                <div class="calendar-description">
+                                                    <div class="description-1">
+                                                        <div class="description-1-color"></div>
+                                                        <div class="description-1-content">
+                                                            Current month
+                                                        </div>
+                                                    </div>
+                                                    <div class="description-2">
+                                                        <div class="description-2-color"></div>
+                                                        <div class="description-2-content">
+                                                            Selected month
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cont-position">
+                                    <div id="cont-position-departure" class="cont-inf-field ">
+                                        <label for="input-position-departure" class="title-field ">Departure <span>(required)</span></label>
+                                        <input id="input-position-departure" name="positionDeparture" class="input-field input-select-field reset-field text-field" type="text" placeholder="Select Departure" readonly>
+                                        <div class="departure-position-content">
+                                            <div class="position-search">
+                                                <!-- <label for="optionSearchDeparturePosition"></label> -->
+                                                <input type="text" id="option-search-departure-position" class="input-field reset-field text-field" placeholder="Search Departure">
+                                            </div>
+                                            <ul class="departure-position-options">
+                                                <li th:each="city : ${cityList}" th:data-id="${city.id}" th:text="${city.name}"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div id="cont-position-destination" class="cont-inf-field ">
+                                        <label for="input-position-destination" class="title-field">Destination <span>(required)</span></label>
+                                        <input id="input-position-destination" name="positionDestination" class="input-field input-select-field reset-field text-field" type="text" placeholder="Select Destination" readonly>
+                                        <div class="destination-position-content">
+                                            <div class="position-search">
+                                                <!-- <label for="optionSearchDestinationPosition"></label> -->
+                                                <input type="text" id="optionSearchDestinationPosition" class="input-field reset-field text-field" placeholder="Search Destination">
+                                            </div>
+                                            <ul class="destination-position-options">
+                                                <li th:each="city :${cityList}" th:data-id="${city.id}" th:text="${city.name}"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cont-centralized-inf">
+                                    <div id="cont-centralized-time" class="cont-inf-field ">
+                                        <label for="input-centralized-time-inf" class="title-field ">Centralized Time <span>(required)</span></label>
+                                        <input type="time" id="input-centralized-time-inf" name="centralizedTimeInf" class="input-field reset-field text-field" onfocus="this.showPicker()" />
+                                    </div>
+                                    <div id="cont-centralized-position" class="cont-inf-field ">
+                                        <label for="input-centralized-position-inf" class="title-field">Centralized Position <span>(required)</span></label>
+                                        <input type="text" id="input-centralized-position-inf" name="centralizedPositionInf" class="input-field reset-field text-field" placeholder="e.g: Airport" maxlength="100">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sub-cont-inf-new-tour cont-process-3 ">
+                                <div id="cont-tour-schedule" class="cont-inf-field ">
+                                </div>
+                            </div>
+
+                            <div class="sub-cont-inf-new-tour cont-process-4">
+                                <div id="cont-main-price" class="cont-inf-field">
+                                    <label for="input-tour-main-price" class="title-field">Price per once <span>(required)</span></label>
+                                    <input type="text" id="input-tour-main-price" name="mainPrice" class="input-field input-price reset-field number-field" value="0" max="100000000" min="0" />
+                                    <span class="char-count">VND</span>
+                                </div>
+                                <div class="cont-sub-price">
+                                    <div id="cont-tour-adult-price" class="cont-inf-field ">
+                                        <label for="input-tour-adult-price" class="title-field">Adult <span>(Ages 12 and above) (required)</span></label>
+                                        <input type="text" id="input-tour-adult-price" name="adultPrice" class="input-field input-price reset-field number-field" value="0" max="100000000" min="0" />
+                                        <span class="char-count">VND</span>
+                                    </div>
+                                    <div id="cont-tour-children-price" class="cont-inf-field ">
+                                        <label for="input-tour-children-price" class="title-field">Children <span>(Ages 5 - 11 and above) (required)</span></label>
+                                        <input type="text" id="input-tour-children-price" name="childrenPrice" class="input-field input-price reset-field number-field" value="0" max="100000000" min="0" />
+                                        <span class="char-count">VND</span>
+                                    </div>
+                                    <div id="cont-tour-toddler-price" class="cont-inf-field ">
+                                        <label for="input-tour-toddler-price" class="title-field">Toddler <span>(Ages 2 - 4 and above) (required)</span></label>
+                                        <input type="text" id="input-tour-toddler-price" name="toddlerPrice" class="input-field input-price reset-field number-field" value="0" max="100000000" min="0" />
+                                        <span class="char-count">VND</span>
+                                    </div>
+                                    <div id="cont-tour-infant-price" class="cont-inf-field ">
+                                        <label for="input-tour-infant-price" class="title-field">Infant <span>(Ages 0 - 2 and above) (required)</span></label>
+                                        <input type="number" id="input-tour-infant-price" name="infantPrice" class="input-field input-price reset-field number-field" value="0" max="100000000" min="0" />
+                                        <span class="char-count">VND</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sub-cont-inf-new-tour cont-process-5">
+                                <div id="cont-tour-highlights" class="cont-inf-field ">
+                                    <label class="title-field">Highlights <span>(required)</span></label>
+                                    <div class="sub-cont-input-tour-highlights-field sub-cont-input-tour-field-process-note">
+                                        <div class="cont-input-tour-highlights-field cont-input-tour-field-process-note sub-cont-input-field sub-input-field">
+                                            <input type="text" name="highlight1" class="input-field reset-field input-tour-field-process-note input-tour-highlight-field text-field" placeholder="e.g: Explore the Valley of Love: Enjoy romantic gardens, serene lakes, and scenic walking trail">
+                                        </div>
+                                    </div>
+                                    <div class="cont-btn-add-new-highlights cont-btn-add-field-process-note">
+                                        <a href="#" id="btn-add-new-highlight"><span class="material-symbols-outlined">
+                            add
+                          </span></a>
+                                    </div>
+                                </div>
+
+                                <div id="cont-tour-included" class="cont-inf-field ">
+                                    <label class="title-field">Included <span>(required)</span></label>
+                                    <div class="sub-cont-input-tour-included-field sub-cont-input-tour-field-process-note">
+                                        <div class="cont-input-tour-included-field cont-input-tour-field-process-note sub-cont-input-field sub-input-field">
+                                            <input type="text" name="included1" class="input-field reset-field input-tour-field-process-note input-tour-included-field text-field " placeholder="e.g: Professional tour guide">
+                                        </div>
+                                    </div>
+                                    <div class="cont-btn-add-new-included cont-btn-add-field-process-note">
+                                        <a href="#" id="btn-add-new-included"><span class="material-symbols-outlined">
+                            add
+                          </span></a>
+                                    </div>
+                                </div>
+
+                                <div id="cont-tour-excluded" class="cont-inf-field ">
+                                    <label class="title-field">Excluded <span>(required)</span></label>
+                                    <div class="sub-cont-input-tour-excluded-field sub-cont-input-tour-field-process-note">
+                                        <div class="cont-input-tour-excluded-field cont-input-tour-field-process-note sub-cont-input-field sub-input-field">
+                                            <input type="text" name="excluded1" class="input-field reset-field input-tour-field-process-note input-tour-excluded-field text-field" placeholder="e.g: Personal expenses such as shopping and phone calls">
+                                        </div>
+                                    </div>
+                                    <div class="cont-btn-add-new-excluded cont-btn-add-field-process-note">
+                                        <a href="#" id="btn-add-new-excluded"><span class="material-symbols-outlined">
+                            add
+                          </span></a>
+                                    </div>
+                                </div>
+
+                                <div id="cont-tour-image" class="cont-inf-field ">
+                                    <label class="title-field">Image <span>(required)</span></label>
+                                    <div class="cont-input-tour-image-field ">
+                                        <div id="cont-input-tour-image-1" class="cont-input-tour-image input-field image-field reset-field">
+                                            <input type="file" id="input-tour-image-1" class="input-tour-image-file" accept="image/*" hidden>
+                                            <div id="input-tour-image-area-1" class="input-tour-image-area" data-img="">
+                            <span class="material-symbols-outlined">
+                              upload
+                            </span>
+                                                <h2>Upload Image</h2>
+                                                <p>Image size must be less than 2MB</p>
+                                            </div>
+                                        </div>
+                                        <div id="cont-input-tour-image-2" class="cont-input-tour-image input-field image-field reset-field">
+                                            <input type="file" id="input-tour-image-2" class="input-tour-image-file" accept="image/*" hidden>
+                                            <div id="input-tour-image-area-2" class="input-tour-image-area" data-img="">
+                            <span class="material-symbols-outlined">
+                              upload
+                            </span>
+                                                <h2>Upload Image</h2>
+                                                <p>Image size must be less than 2MB</p>
+                                            </div>
+                                        </div>
+                                        <div id="cont-input-tour-image-3" class="cont-input-tour-image input-field image-field reset-field">
+                                            <input type="file" id="input-tour-image-3" class="input-tour-image-file" accept="image/*" hidden>
+                                            <div id="input-tour-image-area-3" class="input-tour-image-area" data-img="">
+                            <span class="material-symbols-outlined">
+                              upload
+                            </span>
+                                                <h2>Upload Image</h2>
+                                                <p>Image size must be less than 2MB</p>
+                                            </div>
+                                        </div>
+                                        <div id="cont-input-tour-image-4" class="cont-input-tour-image input-field image-field reset-field">
+                                            <input type="file" id="input-tour-image-4" class="input-tour-image-file" accept="image/*" hidden>
+                                            <div id="input-tour-image-area-4" class="input-tour-image-area" data-img="">
+                            <span class="material-symbols-outlined">
+                              upload
+                            </span>
+                                                <h2>Upload Image</h2>
+                                                <p>Image size must be less than 2MB</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="main-cont-btn-next-progress">
+                                <button id="btn-next-progress" class="btn btn-primary" type="submit">Next</button>
+                            </div>
+                        </form>
+                    </div>
+                    <span id="btn-close-cont-add-new-tour" class="material-symbols-outlined">
+                close
+              </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script th:src="@{/js/dashboard.js}"></script>
+
+</html>
