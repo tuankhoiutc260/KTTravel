@@ -12,11 +12,11 @@ let successMsg =
     '<span class="material-symbols-outlined"> check_circle </span> <span>Successfully</span>';
 btnShowToast.addEventListener("click", function () {
     // showToast(false );
-    submitAddNewTour()
+    submitAddNewTour1()
 });
 
 function showToast(process) {
-    switch (process){
+    switch (process) {
         case true:
             let successToast = document.createElement("div");
             let successMsg =
@@ -638,17 +638,18 @@ btnNextProgress.addEventListener("click", function (event) {
             if (checkNote()) {
                 finishAddNewTour = true;
                 if (finishAddNewTour) {
-                    submitAddNewTour().then(result => {
-                        if (result.success) {
-                            showToast(result.success);
-                            resetField();
-                        } else {
-                            showToast(result.success); // Hiển thị thông báo lỗi cụ thể
-                        }
-                    }).catch(error => {
-                        console.log('Error during submitAddNewTour:', error);
-                        showToast('Có lỗi không mong muốn xảy ra.');
-                    });
+                    // submitAddNewTour()
+                    //     .then(result => {
+                    //     if (result.success) {
+                    //         showToast(result.success);
+                    //         resetField();
+                    //     } else {
+                    //         showToast(result.success); // Hiển thị thông báo lỗi cụ thể
+                    //     }
+                    // }).catch(error => {
+                    //     console.log('Error during submitAddNewTour:', error);
+                    //     showToast('Có lỗi không mong muốn xảy ra.');
+                    // });
                 }
             }
 
@@ -661,6 +662,66 @@ btnNextProgress.addEventListener("click", function (event) {
 });
 
 function submitAddNewTour() {
+    const departureSelectedCityID = Number(document.querySelector('.departure-position-options li.selected').getAttribute('data-id'));
+    const destinationSelectedCityID = Number(document.querySelector('.destination-position-options li.selected').getAttribute('data-id'));
+    const departureDateStr = document.getElementById('input-departure-date').value.replace(/\//g, '-');
+    const destinationDateStr = document.getElementById('input-destination-date').value.replace(/\//g, '-');
+
+    const tourData = {
+        name: document.getElementById('input-tour-name').value,
+        description: document.getElementById('input-tour-description').value,
+        departureDate: departureDateStr,
+        destinationDate: destinationDateStr,
+        positionDepartureID: departureSelectedCityID,
+        positionDestinationID: destinationSelectedCityID,
+        centralizedTimeInf: document.getElementById('input-centralized-time-inf').value,
+        centralizedPositionInf: document.getElementById('input-centralized-position-inf').value,
+        schedules: [],
+        mainPrice: document.getElementById('input-tour-main-price').value.replace(/\./g, ""),
+        adultPrice: document.getElementById('input-tour-adult-price').value.replace(/\./g, ""),
+        childrenPrice: document.getElementById('input-tour-children-price').value.replace(/\./g, ""),
+        toddlerPrice: document.getElementById('input-tour-toddler-price').value.replace(/\./g, ""),
+        infantPrice: document.getElementById('input-tour-infant-price').value.replace(/\./g, ""),
+        highlights: Array.from(document.querySelectorAll(".input-tour-highlight-field"), input => input.value),
+        included: Array.from(document.querySelectorAll(".input-tour-included-field"), input => input.value),
+        excluded: Array.from(document.querySelectorAll(".input-tour-excluded-field"), input => input.value)
+    };
+
+    console.log(tourData);
+
+    const allInputTourScheduleTitle = document.querySelectorAll('.input-tour-schedule-title');
+    allInputTourScheduleTitle.forEach((element, index) => {
+        tourData.schedules.push({
+            title: element.value,
+            description: document.querySelectorAll('.div-input-tour-description-schedule')[index].nextElementSibling.value.trim()
+        });
+    });
+
+    fetch('/api/tours/add', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(tourData)
+    })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = '/dashboard';
+            } else if (response.status === 409) {
+                alert('Tour đã tồn tại.');
+            } else {
+                response.json().then(data => {
+                    alert(data.message || 'Có lỗi xảy ra.');
+                });
+            }
+        })
+        .catch(error => {
+            alert('Có lỗi không mong muốn xảy ra.');
+        });
+}
+
+
+function submitAddNewTour1() {
     // const departureSelectedCityID = document.querySelector('.departure-position-options li.selected').getAttribute('data-id');
     // const destinationSelectedCityID = document.querySelector('.destination-position-options li.selected').getAttribute('data-id');
     // const departureDateStr = document.getElementById('input-departure-date').value.replace(/\//g, '-');
@@ -689,12 +750,14 @@ function submitAddNewTour() {
         description: '5',
         departureDate: '20-5-2024',
         destinationDate: '21-5-2024',
-        positionDeparture: 1,
-        positionDestination: 2,
+        positionDepartureID: 1,
+        positionDestinationID: 2,
         centralizedTimeInf: '17:45',
         centralizedPositionInf: '5',
-        schedules: [{"title": "Visit Hoan Kiem Lake",
-            "description": "Enjoy the beauty of the lake and surrounding area"}],
+        schedules: [{
+            "title": "Visit Hoan Kiem Lake",
+            "description": "Enjoy the beauty of the lake and surrounding area"
+        }],
         mainPrice: 5,
         adultPrice: 5,
         childrenPrice: 5,
@@ -702,8 +765,10 @@ function submitAddNewTour() {
         infantPrice: 5,
         highlights: ['1', '2', '3'],
         included: ['1', '2', '3'],
-        excluded: ['1', '2', '3'],
+        excluded: ['1', '2', '3']
     };
+
+    console.log(tourData)
 
 
     // const allInputTourScheduleTitle = document.querySelectorAll('.input-tour-schedule-title');
@@ -746,8 +811,6 @@ function submitAddNewTour() {
 }
 
 
-
-
 let dayCount = 0;
 let departureDate;
 let destinationDate;
@@ -762,22 +825,22 @@ function addScheduleContainer(dayIndex) {
     newSchedule.className = "cont-date-schedule";
     newSchedule.innerHTML = `
 <div id="cont-tour-schedule-title" class="cont-inf-field">
-<span style="font-weight: bold; font-size: 1.5rem; text-align: center;">Day ${dayCount} - ${formattedDate}</span>
-<label for="input-tour-schedule-title-${dayCount}" class="title-field">Title Schedule <span>(required)</span></label>
-<input type="text" id="input-tour-schedule-title-${dayCount}" name="inputTourScheduleTitle${dayCount}" class="input-field reset-field input-tour-schedule-title text-field" placeholder="e.g: Khám phá Thác Datanla và Đồi Cỏ xanh..." maxlength="100" oninput="countChar100(this, document.querySelector('#tour-schedule-title-char-count'))">
-<span id="tour-schedule-title-char-count" class="char-count char-count-100 reset-field">0/100</span>
+    <span style="font-weight: bold; font-size: 1.5rem; text-align: center;">Day ${dayCount} - ${formattedDate}</span>
+    <label for="input-tour-schedule-title-${dayCount}" class="title-field">Title Schedule <span>(required)</span></label>
+    <input th:field="*{schedules[${dayCount - 1}].getTitle()}" type="text" id="input-tour-schedule-title-${dayCount}" name="inputTourScheduleTitle${dayCount}" class="input-field reset-field input-tour-schedule-title text-field" placeholder="e.g: Khám phá Thác Datanla và Đồi Cỏ xanh..." maxlength="100" oninput="countChar100(this, document.querySelector('#tour-schedule-title-char-count'))">
+    <span id="tour-schedule-title-char-count" class="char-count char-count-100 reset-field">0/100</span>
 </div>
 <div class="cont-schedule-content cont-inf-field">
-<p class="title-field">Description Schedule <span>(required)</span></p>
-<div class="sub-cont-input-field sub-input-field">
-<div style="border: none;" id="div-input-tour-description-schedule-${dayCount}" class="input-field div-input-tour-description-schedule reset-field text-field" contenteditable="true"></div>
-<input type="hidden" id="input-tour-description-schedule-${dayCount}" name="inputTourDescriptionSchedule${dayCount}" class="input-tour-description-schedule">
-<div class="cont-tool-editor">
-  <a class="btn btn-tertiary" href="#" onclick="document.execCommand('bold', true, '')"><strong>B</strong></a>
-  <a class="btn btn-tertiary" href="#" onclick="document.execCommand('italic', true, '')"><em>I</em></a>
-  <a class="btn btn-tertiary" href="#" onclick="document.execCommand('underline', true, '')"><u>U</u></a>
-</div>
-</div>
+    <p class="title-field">Description Schedule <span>(required)</span></p>
+    <div class="sub-cont-input-field sub-input-field">
+        <div style="border: none;" id="div-input-tour-description-schedule-${dayCount}" class="input-field div-input-tour-description-schedule reset-field text-field" contenteditable="true"></div>
+        <input th:field="*{schedules[${dayCount - 1}].getDescription()}" type="hidden" id="input-tour-description-schedule-${dayCount}" name="inputTourDescriptionSchedule${dayCount}" class="input-tour-description-schedule">
+        <div class="cont-tool-editor">
+            <a class="btn btn-tertiary" href="#" onclick="document.execCommand('bold', true, '')"><strong>B</strong></a>
+            <a class="btn btn-tertiary" href="#" onclick="document.execCommand('italic', true, '')"><em>I</em></a>
+            <a class="btn btn-tertiary" href="#" onclick="document.execCommand('underline', true, '')"><u>U</u></a>
+        </div>
+    </div>
 </div>
       `;
     container.appendChild(newSchedule);
@@ -1374,11 +1437,14 @@ const departurePositionOptions = document.querySelector(
 
 departurePositionOptionsList.forEach(function (departurePositionOptionsListSingle) {
     departurePositionOptionsListSingle.addEventListener("click", function () {
+        const inputPositionDepartureValue = document.getElementById('input-position-departure-value')
+        const departureCityId = departurePositionOptionsListSingle.getAttribute('data-id');
         departurePositionOptionsList.forEach(function (option) {
             option.classList.remove('selected');
         });
         this.classList.add('selected');
         inputPositionDeparture.value = this.textContent;
+        inputPositionDepartureValue.value = departureCityId;
         inputPositionDeparture.style.borderColor = "";
         departurePositionContent.classList.remove("active");
     });
@@ -1414,11 +1480,18 @@ destinationPositionOptionsList.forEach(function (
     destinationPositionOptionsListSingle
 ) {
     destinationPositionOptionsListSingle.addEventListener("click", function () {
+        const inputPositionDestinationValue = document.getElementById('input-position-destination-value')
+        const destinationCityId = destinationPositionOptionsListSingle.getAttribute('data-id');
         destinationPositionOptionsList.forEach(function (option) {
             option.classList.remove("selected");
         });
         this.classList.add("selected");
+        const cityId = this.getAttribute('data-id');
+
         inputPositionDestination.value = this.textContent;
+        inputPositionDestinationValue.value = destinationCityId;
+        inputPositionDestination.setAttribute('th:attr', cityId);
+
         inputPositionDestination.style.borderColor = "";
         destinationPositionContent.classList.remove("active");
     });
@@ -1550,10 +1623,10 @@ btnAddNewHighlight.addEventListener("click", function () {
     newContHighlights.className =
         "cont-input-tour-highlights-field cont-input-tour-field-process-note sub-cont-input-field sub-input-field";
     newContHighlights.innerHTML = `
-<input type="text" name="highlight${highlightCount}" class="input-field input-tour-field-process-note input-tour-highlight-field reset-field text-field" placeholder="e.g: Explore the Valley of Love: Enjoy romantic gardens, serene lakes, and scenic walking trail">
+<input th:field="*{highlights[${highlightCount}]}" type="text" name="highlight${highlightCount}" class="input-field input-tour-field-process-note input-tour-highlight-field reset-field text-field" placeholder="e.g: Explore the Valley of Love: Enjoy romantic gardens, serene lakes, and scenic walking trail">
 <div class="cont-btn-function-with-highlights-field cont-btn-function-with-field-of-process-note">
-<a href="#" id="btn-delete-highlights" class="btn-function-with-field-of-process-note btn-normal">
-<span class="material-symbols-outlined">close</span></a>
+    <a href="#" id="btn-delete-highlights" class="btn-function-with-field-of-process-note btn-normal">
+    <span class="material-symbols-outlined">close</span></a>
 </div>`;
     subContInputTourHighlightsField.appendChild(newContHighlights);
     checkEmptyInputField();
@@ -1582,10 +1655,10 @@ btnAddNewIncluded.addEventListener("click", function () {
     newContIncluded.className =
         "cont-input-tour-included-field cont-input-tour-field-process-note sub-cont-input-field sub-input-field";
     newContIncluded.innerHTML = `
-<input type="text" name="included${includeCount}" class="input-field input-tour-field-process-note input-tour-included-field reset-field text-field" placeholder="e.g: Explore the Valley of Love: Enjoy romantic gardens, serene lakes, and scenic walking trail">
+<input th:field="*{included[${includeCount}]}" type="text" name="included${includeCount}" class="input-field input-tour-field-process-note input-tour-included-field reset-field text-field" placeholder="e.g: Explore the Valley of Love: Enjoy romantic gardens, serene lakes, and scenic walking trail">
 <div class="cont-btn-function-with-included-field cont-btn-function-with-field-of-process-note">
-<a href="#" id="btn-delete-included" class="btn-function-with-field-of-process-note btn-normal">
-<span class="material-symbols-outlined">close</span></a>
+    <a href="#" id="btn-delete-included" class="btn-function-with-field-of-process-note btn-normal">
+    <span class="material-symbols-outlined">close</span></a>
 </div>`;
     subContInputTourIncludedField.appendChild(newContIncluded);
     checkEmptyInputField();
@@ -1614,10 +1687,10 @@ btnAddNewExcluded.addEventListener("click", function () {
     newContExcluded.className =
         "cont-input-tour-excluded-field cont-input-tour-field-process-note sub-cont-input-field sub-input-field";
     newContExcluded.innerHTML = `
-<input type="text" name="excluded${excludedCount}" class="input-field input-tour-field-process-note input-tour-excluded-field reset-field text-field" placeholder="e.g: Explore the Valley of Love: Enjoy romantic gardens, serene lakes, and scenic walking trail">
+<input th:field="*{excluded[${excludedCount}]}" type="text" name="excluded${excludedCount}" class="input-field input-tour-field-process-note input-tour-excluded-field reset-field text-field" placeholder="e.g: Explore the Valley of Love: Enjoy romantic gardens, serene lakes, and scenic walking trail">
 <div class="cont-btn-function-with-excluded-field cont-btn-function-with-field-of-process-note">
-<a href="#" id="btn-delete-excluded" class="btn-function-with-field-of-process-note btn-normal">
-<span class="material-symbols-outlined">close</span></a>
+    <a href="#" id="btn-delete-excluded" class="btn-function-with-field-of-process-note btn-normal">
+    <span class="material-symbols-outlined">close</span></a>
 </div>`;
     subContInputTourExcludedField.appendChild(newContExcluded);
     checkEmptyInputField();

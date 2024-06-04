@@ -1,15 +1,16 @@
 package org.example.kttravel.mapper;
 
 import org.example.kttravel.dto.CityDTO;
-import org.example.kttravel.model.City;
+import org.example.kttravel.entity.City;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
+import org.mapstruct.factory.Mappers;
 
-public class CityMapper {
+@Mapper
+public interface CityMapper {
+    CityMapper INSTANCE = Mappers.getMapper(CityMapper.class);
 
-    public static City mapToCity(CityDTO cityDTO) {
-        City city = new City();
-        city.setName(cityDTO.getName());
-        city.setProvinceName(cityDTO.getProvinceName());
-        return city;
-    }
+    CityDTO toDTO(City city);
+    City toEntity(CityDTO cityDTO);
 }
-

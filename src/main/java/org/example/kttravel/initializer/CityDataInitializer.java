@@ -2,7 +2,7 @@ package org.example.kttravel.initializer;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.kttravel.model.City;
+import org.example.kttravel.entity.City;
 import org.example.kttravel.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

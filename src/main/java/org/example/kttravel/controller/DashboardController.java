@@ -1,12 +1,8 @@
 package org.example.kttravel.controller;
 
-import org.example.kttravel.model.City;
-import org.example.kttravel.model.Tour;
 import org.example.kttravel.service.CityService;
-import org.example.kttravel.service.TourServices;
+import org.example.kttravel.service.TourService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -15,20 +11,44 @@ import java.util.List;
 @RequestMapping("/dashboard")
 
 public class DashboardController {
-    private final CityService cityServices;
-    private final TourServices tourServices;
-    public DashboardController(CityService cityServices, TourServices tourServices) {
-        this.cityServices = cityServices;
-        this.tourServices = tourServices;
+    private final CityService cityService;
+    private final TourService tourService;
+    public DashboardController(CityService cityService, TourService tourService) {
+        this.cityService = cityService;
+        this.tourService = tourService;
     }
 
-    @GetMapping("/tour")
-    public String dashboard(Model model){
-        List<City> cityList = cityServices.getAllCity();
-        List<Tour> tourList = tourServices.getAllTour();
-        model.addAttribute("cityList", cityList);
-        model.addAttribute("tourList", tourList);
-        return "tour-dashboard.html";
-    }
+//    @GetMapping("/tour")
+//    public String dashboard(Model model){
+//        List<City> cityList = cityService.getAllCity();
+//        List<Tour> tourList = tourService.getAllTour();
+//        model.addAttribute("cityList", cityList);
+//        model.addAttribute("tourList", tourList);
+//        TourDTO tourDTO = new TourDTO();
+//        model.addAttribute("tourDTO", tourDTO);
+//        return "tour-dashboard";
+//    }
+
+//    @PostMapping("/tour")
+//    public String addTour(@ModelAttribute("tourDTO") TourDTO tourDTO) {
+//        try{
+//            tourService.addTour(tourDTO);
+//        }
+//        catch (Exception e){
+//        }
+//        return "redirect:/dashboard/tour"; // Chuyển hướng về trang danh sách tour sau khi thêm thành công
+//    }
+
+//    @PostMapping("/tour")
+//    public String addTour(@ModelAttribute("tourDTO") TourDTO tourDTO, RedirectAttributes redirectAttributes) {
+//        try {
+//            tourService.addTour(TourMapper.mapToTour(tourDTO));
+//        } catch (Exception e) {
+//            // Thêm thông báo lỗi vào RedirectAttributes
+//            redirectAttributes.addFlashAttribute("errorMessage", "Có lỗi xảy ra khi tạo tour: " + e.getMessage());
+//            return "redirect:/dashboard/tour"; // Chuyển hướng về trang danh sách tour và hiển thị thông báo lỗi
+//        }
+//        return "redirect:/dashboard/tour"; // Chuyển hướng về trang danh sách tour sau khi thêm thành công
+//    }
 }
 

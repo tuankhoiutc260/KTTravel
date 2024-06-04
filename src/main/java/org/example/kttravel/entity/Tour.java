@@ -1,18 +1,16 @@
-package org.example.kttravel.model;
+package org.example.kttravel.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -32,12 +30,15 @@ public class Tour {
     @JoinColumn(name = "departure_city_id", referencedColumnName = "city_id")
     private City positionDeparture;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "destination_city_iD", referencedColumnName = "city_id")
+    @JoinColumn(name = "destination_city_id", referencedColumnName = "city_id")
     private City positionDestination;
     private String centralizedTimeInf;
     private String centralizedPositionInf;
-    @OneToMany(mappedBy = "tour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonManagedReference
+//    @JsonIgnore
+//    @JsonBackReference
+@JsonManagedReference
+
+@OneToMany(mappedBy = "tour", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Schedule> schedules;
     private double mainPrice;
     private double adultPrice;
@@ -46,8 +47,8 @@ public class Tour {
     private double infantPrice;
     @ElementCollection
     @CollectionTable(name = "tour_highlights", joinColumns = @JoinColumn(name = "tour_id"))
-    @Column(name = "highlight")
-    private List<String> highlight;
+    @Column(name = "highlights")
+    private List<String> highlights;
     @ElementCollection
     @CollectionTable(name = "tour_included", joinColumns = @JoinColumn(name = "tour_id"))
     @Column(name = "included")

@@ -1,4 +1,4 @@
-package org.example.kttravel.model;
+package org.example.kttravel.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,67 +1,49 @@
 package org.example.kttravel.api;
 
 import org.example.kttravel.dto.TourDTO;
-import org.example.kttravel.mapper.TourMapper;
-import org.example.kttravel.model.City;
-import org.example.kttravel.model.ResponeObject;
-import org.example.kttravel.model.Tour;
-import org.example.kttravel.service.CityService;
-import org.example.kttravel.service.TourServices;
-import org.springframework.http.HttpStatus;
+import org.example.kttravel.entity.ResponeObject;
+import org.example.kttravel.service.TourService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/tours")
 public class TourControllerAPI {
-    private final TourServices tourServices;
-    private final CityService cityService;
+    private final TourService tourService;
 
-    public TourControllerAPI(TourServices tourServices, CityService cityService) {
-        this.tourServices = tourServices;
-        this.cityService = cityService;
+    public TourControllerAPI(TourService tourService) {
+        this.tourService = tourService;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ResponeObject> getTourById(@PathVariable int id) {
+        TourDTO tourDTO = tourService.getTourById(id);
+        return ResponseEntity.ok(ResponeObject.success("Get Tour by ID " + id + " Success", tourDTO));
     }
 
     @GetMapping
-    public ResponseEntity<ResponeObject> getAllTour() {
-        List<Tour> tourList = tourServices.getAllTour();
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponeObject("ok", "Here", tourList));
-    }
-
-    @GetMapping("/")
     public ResponseEntity<ResponeObject> getAllTours() {
-        List<Tour> tourList = tourServices.getAllTour();
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponeObject("success", "Get all Tour success", tourList));
+        List<TourDTO> tours = tourService.getAllTours();
+        return ResponseEntity.ok().body(ResponeObject.success("Get All Tour Success", tours));
     }
 
+    @PostMapping
+    public ResponseEntity<ResponeObject> createTour(@RequestBody TourDTO tourDTO) {
+        TourDTO createdTour = tourService.addTour(tourDTO);
+        return ResponseEntity.ok(ResponeObject.success("Created Tour Successfully", createdTour));
+    }
 
-    @PostMapping("/add")
-    public ResponseEntity<ResponeObject> addTour(@RequestBody TourDTO newTourDTO) {
-        ResponeObject responseObject;
-        try {
-            Optional<City> departureCityOptional = cityService.findByID(newTourDTO.getPositionDepartureID());
-            Optional<City> destinationCityOptional = cityService.findByID(newTourDTO.getPositionDestinationID());
-            if(departureCityOptional.isPresent() && destinationCityOptional.isPresent()){
-                Optional<Tour> foundTour = tourServices.getTourByName(newTourDTO.getName());
-                if (foundTour.isPresent()) {
-                    responseObject = new ResponeObject("error", "Tour already exists", "");
-                    return new ResponseEntity<>(responseObject, HttpStatus.CONFLICT);
-                } else {
-                    Tour createdTour = tourServices.addTour(newTourDTO);
-                    responseObject = new ResponeObject("success", "Tour added successfully", createdTour);
-                    return new ResponseEntity<>(responseObject, HttpStatus.CREATED);
-                }
-            }
-            else{
-                responseObject = new ResponeObject("error", "Departure or destination city not found", null);
-                return new ResponseEntity<>(responseObject, HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            responseObject = new ResponeObject("error", "Failed to add tour", null);
-            return new ResponseEntity<>(responseObject, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponeObject> updateTour(@PathVariable int id, @RequestBody TourDTO tourDTO) {
+        TourDTO updatedTour = tourService.updateTour(id, tourDTO);
+        return ResponseEntity.ok(ResponeObject.success("Update Tour Successfully", updatedTour));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ResponeObject> deleteTour(@PathVariable int id) {
+        tourService.deleteTour(id);
+        return ResponseEntity.ok(ResponeObject.success("Delete Tour Successfully", null));
     }
 }

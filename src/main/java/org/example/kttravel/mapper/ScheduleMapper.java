@@ -1,34 +1,26 @@
 package org.example.kttravel.mapper;
 
 import org.example.kttravel.dto.ScheduleDTO;
-import org.example.kttravel.model.Schedule;
-import org.example.kttravel.model.Tour;
+import org.example.kttravel.entity.Schedule;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.Mappings;
+import org.mapstruct.factory.Mappers;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class ScheduleMapper {
-    public static Schedule mapToSchedule(ScheduleDTO scheduleDTO) {
-        Schedule schedule = new Schedule();
+import org.example.kttravel.dto.ScheduleDTO;
+import org.example.kttravel.entity.Schedule;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.factory.Mappers;
 
-        try {
-            schedule.setTitle(scheduleDTO.getTitle());
-            schedule.setDescription(scheduleDTO.getDescription());
-        } catch (Exception e) {
+@Mapper
+public interface ScheduleMapper {
+    ScheduleMapper INSTANCE = Mappers.getMapper(ScheduleMapper.class);
 
-        }
-        return schedule;
-    }
+    ScheduleDTO toDTO(Schedule schedule);
 
-    public static List<Schedule> createSchedulesForTour(List<ScheduleDTO> scheduleDTOList, Tour tour) {
-        List<Schedule> schedules = new ArrayList<>();
-        if (scheduleDTOList != null) {
-            for (ScheduleDTO scheduleDTO : scheduleDTOList) {
-                Schedule schedule = mapToSchedule(scheduleDTO);
-                schedule.setTour(tour);
-                schedules.add(schedule);
-            }
-        }
-        return schedules;
-    }
+    Schedule toEntity(ScheduleDTO scheduleDTO);
 }

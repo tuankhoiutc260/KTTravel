@@ -1,18 +1,13 @@
 package org.example.kttravel.controller;
 
-import org.example.kttravel.model.Tour;
-import org.example.kttravel.service.TourServices;
+import org.example.kttravel.service.TourService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 public class TourController {
-    private final TourServices tourServices;
+    private final TourService tourServices;
 
-    public TourController(TourServices tourServices) {
+    public TourController(TourService tourServices) {
         this.tourServices = tourServices;
     }
 

@@ -1,5 +1,6 @@
 package org.example.kttravel.config;
 
+import org.example.kttravel.mapper.TourMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.fasterxml.jackson.databind.ObjectMapper;
