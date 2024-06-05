@@ -15,4 +15,7 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Integer> {
     @Query("DELETE FROM Schedule s WHERE s.tour.id = :tourId")
 
     void deleteByTourId(@Param("tourId") int tourId);
+
+//    Schedule findByTitle(String name);
+
 }
