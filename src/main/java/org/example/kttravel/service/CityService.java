@@ -1,13 +1,13 @@
 package org.example.kttravel.service;
 
 import org.example.kttravel.dto.CityDTO;
-import org.example.kttravel.entity.City;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CityService {
     CityDTO getCityById(int id);
-    CityDTO saveCity(CityDTO cityDTO);
+    List<CityDTO> getAllCity();
+    CityDTO addCity(CityDTO cityDTO);
+    CityDTO updateCity(int id, CityDTO cityDTO);
     void deleteCity(int id);
 }

@@ -15,13 +15,11 @@ import org.example.kttravel.service.TourService;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class TourServiceImpl implements TourService {
-
     private final TourRepository tourRepository;
 
     private final CityRepository cityRepository;
@@ -37,7 +35,7 @@ public class TourServiceImpl implements TourService {
     @Override
     public TourDTO getTourById(int id) {
         Tour tour = tourRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("TourID not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Tour not found"));
         return TourMapper.INSTANCE.toDTO(tour);
     }
 
@@ -84,7 +82,7 @@ public class TourServiceImpl implements TourService {
     public TourDTO updateTour(int id, TourDTO tourDTO) {
         Tour existingTour = tourRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Tour not found"));
-        try{
+        try {
             existingTour.setName(tourDTO.getName());
             existingTour.setDescription(tourDTO.getDescription());
             existingTour.setDepartureDate(tourDTO.getDepartureDate());
@@ -116,24 +114,21 @@ public class TourServiceImpl implements TourService {
             existingTour.setSchedules(newSchedules);
             Tour updatedTour = tourRepository.save(existingTour);
             return TourMapper.INSTANCE.toDTO(updatedTour);
-        } catch (ResourceNotFoundException e) {
+        } catch (RuntimeException e) {
             throw new ServiceException("Failed to update tour: " + e.getMessage(), e);
         } catch (Exception e) {
             throw new ServiceException("An unexpected error occurred while updating the tour.", e);
         }
-
     }
 
     @Override
     public void deleteTour(int id) {
         tourRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Tour not found"));
-        try{
+        try {
             tourRepository.deleteById(id);
         } catch (ResourceNotFoundException e) {
-            throw new ServiceException("Failed to delete tour: " + e.getMessage(), e);
-        } catch (Exception e) {
-            throw new ServiceException("An unexpected error occurred while updating the tour.", e);
+            throw new ServiceException("Failed to delete Tour: " + e.getMessage(), e);
         }
     }
 }

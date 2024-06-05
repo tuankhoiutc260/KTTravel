@@ -13,5 +13,6 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Integer> {
     @Modifying
     @Transactional
     @Query("DELETE FROM Schedule s WHERE s.tour.id = :tourId")
+
     void deleteByTourId(@Param("tourId") int tourId);
 }

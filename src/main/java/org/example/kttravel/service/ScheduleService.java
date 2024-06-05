@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface ScheduleService {
     ScheduleDTO getScheduleById(int id);
-    ScheduleDTO saveSchedule(ScheduleDTO scheduleDTO);
-    void deleteScheduleByTourID(int id);
-//    void deleteScheduleByID(int tourID);
+    List<ScheduleDTO> getAllSchedule();
+    ScheduleDTO addSchedule(ScheduleDTO scheduleDTO);
+    ScheduleDTO updateSchedule(int id, ScheduleDTO scheduleDTO);
+    void deleteSchedule(int id);
 }

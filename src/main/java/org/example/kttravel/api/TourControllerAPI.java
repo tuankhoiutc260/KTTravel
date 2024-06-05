@@ -6,10 +6,8 @@ import org.example.kttravel.service.TourService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/tours")
+@RequestMapping("/api/tour")
 public class TourControllerAPI {
     private final TourService tourService;
 
@@ -20,25 +18,22 @@ public class TourControllerAPI {
     @GetMapping("/{id}")
     public ResponseEntity<ResponeObject> getTourById(@PathVariable int id) {
         TourDTO tourDTO = tourService.getTourById(id);
-        return ResponseEntity.ok(ResponeObject.success("Get Tour by ID " + id + " Success", tourDTO));
+        return ResponseEntity.ok(ResponeObject.success("Get Tour by ID " + id + " Successfully", tourDTO));
     }
 
     @GetMapping
     public ResponseEntity<ResponeObject> getAllTours() {
-        List<TourDTO> tours = tourService.getAllTours();
-        return ResponseEntity.ok().body(ResponeObject.success("Get All Tour Success", tours));
+        return ResponseEntity.ok().body(ResponeObject.success("Get All Tour Success", tourService.getAllTours()));
     }
 
     @PostMapping
     public ResponseEntity<ResponeObject> createTour(@RequestBody TourDTO tourDTO) {
-        TourDTO createdTour = tourService.addTour(tourDTO);
-        return ResponseEntity.ok(ResponeObject.success("Created Tour Successfully", createdTour));
+        return ResponseEntity.ok(ResponeObject.success("Created Tour Successfully", tourService.addTour(tourDTO)));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ResponeObject> updateTour(@PathVariable int id, @RequestBody TourDTO tourDTO) {
-        TourDTO updatedTour = tourService.updateTour(id, tourDTO);
-        return ResponseEntity.ok(ResponeObject.success("Update Tour Successfully", updatedTour));
+        return ResponseEntity.ok(ResponeObject.success("Update Tour Successfully", tourService.updateTour(id, tourDTO)));
     }
 
     @DeleteMapping("/{id}")
